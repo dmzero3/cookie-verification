@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>iframe</title>
+
+  <style>
+    body,
+    div {
+      margin: 0;
+      padding: 0;
+    }
+    #wrapper {
+      background-color: #efefef;
+      padding: 20px;
+    }
+    .cookie-value {
+      color: #ff0;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div id="wrapper">
+    <h1>iframeの中です</h1>
+    <div id="js-cookie-value" class="cookie-value"></div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+
+  <script>
+    $(function(){
+      var COOKIE_KEY = 'test_cookie';
+      var COOKIE_VALUE = 'test_value';
+      var $cookieValue = $('#js-cookie-value');
+      $.cookie(COOKIE_KEY, COOKIE_VALUE, { expires: 7 });
+
+      if ($.cookie(COOKIE_KEY)) {
+        $cookieValue.html('cookieの値: ' + $.cookie(COOKIE_KEY));
+      } else {
+        $cookieValue.html('cookieが書き込まれてません');
+      }
+    });
+  </script>
+</body>
+</html>
